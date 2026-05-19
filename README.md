@@ -33,7 +33,7 @@ Panel de administración con 9 módulos CRUD:
 
 ### 4. **Reportes PDF**
 4 reportes generables en PDF:
-1. **Bitácora de Sesiones** - Entrada/salida de usuarios por rango de fechas
+1. **Bitácora de Sesiones** - Entrada/salida de usuarios por fecha y hora específica
 2. **Jugadores Filtrados** - Filtro por peso, estatura y equipo
 3. **Valor por Equipo** - Valor total de jugadores por equipo de una confederación
 4. **Países Anfitriones** - Países participantes en cada país anfitrión

@@ -1,8 +1,8 @@
 from app.database.connection import get_connection
-from app.dtos.entities import BitacoraDateRangeDTO, PlayerReportFilterDTO
+from app.dtos.entities import BitacoraDateTimeDTO, PlayerReportFilterDTO
 
 
-def fetch_bitacora_entries(payload: BitacoraDateRangeDTO) -> list[dict]:
+def fetch_bitacora_entries(payload: BitacoraDateTimeDTO) -> list[dict]:
     with get_connection() as conn:
         cursor = conn.cursor(dictionary=True)
         try:
@@ -11,10 +11,11 @@ def fetch_bitacora_entries(payload: BitacoraDateRangeDTO) -> list[dict]:
                 SELECT u.nombre_completo, b.fecha_hora_entrada, b.fecha_hora_salida
                 FROM bitacora_sesiones b
                 JOIN usuarios u ON b.id_usuario = u.id_usuario
-                WHERE DATE(b.fecha_hora_entrada) BETWEEN %s AND %s
+                WHERE b.fecha_hora_entrada = %s
+                  AND b.fecha_hora_salida = %s
                 ORDER BY b.fecha_hora_entrada
                 """,
-                (payload.fecha_inicio, payload.fecha_fin),
+                (payload.fecha_hora_entrada, payload.fecha_hora_salida),
             )
             return cursor.fetchall()
         finally:
@@ -105,4 +106,3 @@ def fetch_host_country_participants() -> list[dict]:
             return cursor.fetchall()
         finally:
             cursor.close()
-

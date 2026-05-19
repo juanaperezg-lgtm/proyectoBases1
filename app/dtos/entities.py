@@ -151,9 +151,9 @@ class UserStatusUpdateDTO:
 
 
 @dataclass(frozen=True)
-class BitacoraDateRangeDTO:
-    fecha_inicio: str
-    fecha_fin: str
+class BitacoraDateTimeDTO:
+    fecha_hora_entrada: str
+    fecha_hora_salida: str
 
 
 @dataclass(frozen=True)

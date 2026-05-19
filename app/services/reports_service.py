@@ -6,10 +6,10 @@ from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer, PageBreak
 from reportlab.lib.units import inch
 from app.daos import reports_dao
-from app.dtos.entities import BitacoraDateRangeDTO, PlayerReportFilterDTO
+from app.dtos.entities import BitacoraDateTimeDTO, PlayerReportFilterDTO
 
 
-def generate_bitacora_report(fecha_inicio: str, fecha_fin: str) -> BytesIO:
+def generate_bitacora_report(fecha_hora_entrada: str, fecha_hora_salida: str) -> BytesIO:
     """Genera reporte PDF de bitácora de sesiones"""
     buffer = BytesIO()
     doc = SimpleDocTemplate(buffer, pagesize=letter)
@@ -29,7 +29,10 @@ def generate_bitacora_report(fecha_inicio: str, fecha_fin: str) -> BytesIO:
     elements.append(Spacer(1, 0.2 * inch))
 
     results = reports_dao.fetch_bitacora_entries(
-        BitacoraDateRangeDTO(fecha_inicio=fecha_inicio, fecha_fin=fecha_fin)
+        BitacoraDateTimeDTO(
+            fecha_hora_entrada=fecha_hora_entrada,
+            fecha_hora_salida=fecha_hora_salida,
+        )
     )
 
     if not results:

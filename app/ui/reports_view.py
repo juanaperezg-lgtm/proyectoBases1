@@ -1,4 +1,5 @@
 from tkinter import StringVar, messagebox, ttk, filedialog
+from typing import Optional
 from datetime import datetime
 from app.controllers import reports_service, confederations_service, teams_service
 
@@ -23,13 +24,13 @@ class ReportsView(ttk.Frame):
         form_frame = ttk.LabelFrame(frame, text="Filtros", padding=10)
         form_frame.pack(fill="x", pady=(0, 12))
 
-        ttk.Label(form_frame, text="Fecha Inicio (YYYY-MM-DD):").grid(row=0, column=0, sticky="w", padx=(0, 10))
-        self.bitacora_inicio = StringVar()
-        ttk.Entry(form_frame, textvariable=self.bitacora_inicio, width=20).grid(row=0, column=1, sticky="ew", padx=(0, 20))
+        ttk.Label(form_frame, text="Entrada (YYYY-MM-DD HH:MM[:SS]):").grid(row=0, column=0, sticky="w", padx=(0, 10))
+        self.bitacora_entrada = StringVar()
+        ttk.Entry(form_frame, textvariable=self.bitacora_entrada, width=24).grid(row=0, column=1, sticky="ew", padx=(0, 20))
 
-        ttk.Label(form_frame, text="Fecha Fin (YYYY-MM-DD):").grid(row=0, column=2, sticky="w", padx=(0, 10))
-        self.bitacora_fin = StringVar()
-        ttk.Entry(form_frame, textvariable=self.bitacora_fin, width=20).grid(row=0, column=3, sticky="ew")
+        ttk.Label(form_frame, text="Salida (YYYY-MM-DD HH:MM[:SS]):").grid(row=0, column=2, sticky="w", padx=(0, 10))
+        self.bitacora_salida = StringVar()
+        ttk.Entry(form_frame, textvariable=self.bitacora_salida, width=24).grid(row=0, column=3, sticky="ew")
 
         form_frame.columnconfigure(1, weight=1)
         form_frame.columnconfigure(3, weight=1)
@@ -41,16 +42,28 @@ class ReportsView(ttk.Frame):
 
         info_frame = ttk.LabelFrame(frame, text="Información", padding=10)
         info_frame.pack(fill="both", expand=True)
-        ttk.Label(info_frame, text="Este reporte muestra todos los ingresos y salidas de usuarios en el período especificado.").pack(anchor="w")
+        ttk.Label(
+            info_frame,
+            text="Este reporte muestra los ingresos y salidas de usuarios en la fecha y hora especificadas.",
+        ).pack(anchor="w")
 
         return frame
 
     def _generate_bitacora_pdf(self) -> None:
-        inicio = self.bitacora_inicio.get().strip()
-        fin = self.bitacora_fin.get().strip()
+        entrada_raw = self.bitacora_entrada.get().strip()
+        salida_raw = self.bitacora_salida.get().strip()
 
-        if not inicio or not fin:
-            messagebox.showwarning("Campos requeridos", "Ingresa las fechas de inicio y fin.")
+        if not entrada_raw or not salida_raw:
+            messagebox.showwarning("Campos requeridos", "Ingresa fecha y hora de entrada y salida.")
+            return
+
+        entrada = self._parse_datetime(entrada_raw)
+        salida = self._parse_datetime(salida_raw)
+        if not entrada or not salida:
+            messagebox.showerror(
+                "Formato inválido",
+                "Usa el formato YYYY-MM-DD HH:MM o YYYY-MM-DD HH:MM:SS."
+            )
             return
 
         try:
@@ -60,12 +73,22 @@ class ReportsView(ttk.Frame):
                 initialfile=f"bitacora_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
             )
             if file_path:
-                pdf_buffer = reports_service.generate_bitacora_report(inicio, fin)
+                pdf_buffer = reports_service.generate_bitacora_report(entrada, salida)
                 with open(file_path, "wb") as f:
                     f.write(pdf_buffer.getvalue())
                 messagebox.showinfo("OK", f"PDF generado exitosamente:\n{file_path}")
         except Exception as e:
             messagebox.showerror("Error", f"Error al generar PDF: {str(e)}")
+
+    @staticmethod
+    def _parse_datetime(value: str) -> Optional[str]:
+        for fmt in ("%Y-%m-%d %H:%M:%S", "%Y-%m-%d %H:%M"):
+            try:
+                parsed = datetime.strptime(value, fmt)
+                return parsed.strftime("%Y-%m-%d %H:%M:%S")
+            except ValueError:
+                continue
+        return None
 
     def _build_players_report(self) -> ttk.Frame:
         frame = ttk.Frame(self, padding=12)

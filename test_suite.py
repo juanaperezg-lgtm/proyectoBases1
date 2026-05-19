@@ -323,11 +323,14 @@ def test_reports():
         )
         
         # Test bitácora de sesiones
-        start_date = (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
-        end_date = datetime.now().strftime("%Y-%m-%d")
+        entrada_dt = (datetime.now() - timedelta(days=7)).replace(microsecond=0)
+        salida_dt = datetime.now().replace(microsecond=0)
         
         try:
-            pdf_data = generate_bitacora_report(start_date, end_date)
+            pdf_data = generate_bitacora_report(
+                entrada_dt.strftime("%Y-%m-%d %H:%M:%S"),
+                salida_dt.strftime("%Y-%m-%d %H:%M:%S"),
+            )
             if pdf_data and pdf_data.getbuffer().nbytes > 0:
                 report.add_test(
                     "REPORT 1: Bitácora de sesiones",

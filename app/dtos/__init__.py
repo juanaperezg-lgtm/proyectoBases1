@@ -1,5 +1,5 @@
 from app.dtos.entities import (
-    BitacoraDateRangeDTO,
+    BitacoraDateTimeDTO,
     CityCreateDTO,
     CityUpdateDTO,
     CoachCreateDTO,
@@ -21,4 +21,3 @@ from app.dtos.entities import (
     UserCreateDTO,
     UserStatusUpdateDTO,
 )
-

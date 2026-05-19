@@ -115,7 +115,7 @@
 ### 5. REPORTES PDF REQUERIDOS ✅
 
 1. **Bitácora de Sesiones**
-   - [x] Filtro por rango de fechas
+   - [x] Filtro por fecha y hora específica
    - [x] PDF generado con ReportLab
    - [x] Tabla con usuario, entrada, salida
    - [x] Guardable en disco
