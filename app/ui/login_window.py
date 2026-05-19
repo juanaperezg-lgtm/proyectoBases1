@@ -1,7 +1,7 @@
 from tkinter import StringVar, Tk, Toplevel, messagebox, ttk
 
 from app.config import APP_TITLE
-from app.services.auth_service import authenticate
+from app.controllers.auth_service import authenticate
 from app.ui.main_window import MainWindow
 
 

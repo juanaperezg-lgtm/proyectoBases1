@@ -2,7 +2,7 @@ from tkinter import StringVar, messagebox, ttk
 
 from mysql.connector.errors import IntegrityError
 
-from app.services import confederations_service
+from app.controllers import confederations_service
 
 
 class ConfederationsView(ttk.Frame):

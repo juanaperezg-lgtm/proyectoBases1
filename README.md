@@ -90,6 +90,25 @@ proyecto-bases/
 │   ├── database/
 │   │   ├── connection.py         # Conexión a MySQL
 │   │   └── schema.py             # Esquema y seed
+│   ├── dtos/                     # Objetos de transferencia de datos
+│   │   └── entities.py
+│   ├── daos/                     # Acceso a datos (SQL)
+│   │   ├── auth_dao.py
+│   │   ├── confederations_dao.py
+│   │   ├── countries_dao.py
+│   │   ├── cities_dao.py
+│   │   ├── stadiums_dao.py
+│   │   ├── teams_dao.py
+│   │   ├── coaches_dao.py
+│   │   ├── players_dao.py
+│   │   ├── groups_dao.py
+│   │   ├── matches_dao.py
+│   │   ├── users_dao.py
+│   │   └── reports_dao.py
+│   ├── controllers/              # Controladores (MVC)
+│   │   ├── auth_service.py
+│   │   ├── user_service.py
+│   │   └── ...
 │   ├── services/                 # Lógica de negocio
 │   │   ├── auth_service.py
 │   │   ├── user_service.py
@@ -189,6 +208,7 @@ proyecto-bases/
 - ReportLab 4.4.1 para PDFs
 - Compatible con Python 3.8+
 - Validación de datos en formularios
+- Arquitectura en capas MVC + DTO + DAO (sin frameworks)
 
 ## Autor
 Proyecto Final - Bases de Datos I

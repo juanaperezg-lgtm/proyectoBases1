@@ -2,7 +2,7 @@ from tkinter import StringVar, messagebox, ttk
 
 from mysql.connector.errors import IntegrityError
 
-from app.services import teams_service, countries_service, confederations_service
+from app.controllers import teams_service, countries_service, confederations_service
 
 
 class TeamsView(ttk.Frame):

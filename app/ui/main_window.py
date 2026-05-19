@@ -1,7 +1,7 @@
 from tkinter import Toplevel, ttk
 
 from app.config import APP_TITLE
-from app.services.auth_service import close_session
+from app.controllers.auth_service import close_session
 from app.ui.users_view import UsersView
 from app.ui.confederations_view import ConfederationsView
 from app.ui.countries_view import CountriesView

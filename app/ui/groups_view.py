@@ -1,6 +1,6 @@
 from tkinter import StringVar, messagebox, ttk
 
-from app.services import groups_service, teams_service
+from app.controllers import groups_service, teams_service
 
 
 class GroupsView(ttk.Frame):

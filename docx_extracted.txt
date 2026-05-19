@@ -1,0 +1,19 @@
+UNIVERSIDAD DEL QUINDIO
+PROGRAMA DE INGENIERÍA DE SISTEMAS Y COMPUTACIÓN
+BASES DE DATOS I
+ENUNCIADO PROYECTO FINAL
+El campeonato mundial de fútbol es un evento deportivo que se lleva a cabo cada cuatro años. Para este año, el mundial se jugará en México, USA y Canadá. Contará con 48 equipos provenientes de las diferentes confederaciones del mundo.
+Se requiere crear una base de datos que permita almacenar la información de todos los equipos que van a jugar el mundial, sus directores técnicos y jugadores. Es necesario almacenar la información de las ciudades y de los estadios donde se jugarán los partidos de la fase de grupos; esto indica que, se deben tener almacenados los 12 grupos y sus partidos. La base de datos contará con una aplicación en un lenguaje de programación previamente establecido, así como el SGBD.
+La aplicación que se creará será de escritorio y NO se van a utilizar frameworks para nada. 
+La aplicación deberá contar con un sistema básico de seguridad que consiste en un login de usuarios. Habrán tres tipos de usuarios: El Administrador (solo 1), los usuarios tradicionales y los usuarios esporádicos. Solo el Administrador puede crear nuevos usuarios. Los usuarios tradicionales pueden ejecutar los CRUD para la gestión de datos. Los usuarios esporádicos solo podrán ejecutar las consultas. También, se contará con una Bitácora que almacenará los datos del ingreso y la salida de los usuarios del sistema (fechas y horas de entrada y salida).
+Consultas y reportes mínimos que debe tener la aplicación.
+Consultas
+Determinar los datos del jugador más costoso por confederación
+Listar los partidos que se llevarán a cabo en un estadio cualquiera que el usuario elija.
+Determinar el equipo más costoso de los que van a jugar en cada país (México, USA, Canadá) en la fase de grupos.
+Determinar la cantidad de jugadores por equipo que tienen menos de 21 años.
+Reportes (Archivo en .pdf o en una herramienta de reportes mostrado dentro de un formulario en la aplicación)
+Listar los usuarios que hayan ingresado y salido de la aplicación en una fecha y hora específica
+Listar los jugadores cuyo peso, estatura y equipo están dentro de lo solicitado por el usuario.
+Determinar el valor total de los jugadores por equipo y que pertenecen a una confederación específica.
+Listar los países que se jugarán en cada país anfitrión

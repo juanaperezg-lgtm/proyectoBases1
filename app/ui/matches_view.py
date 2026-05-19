@@ -1,6 +1,6 @@
 from tkinter import StringVar, messagebox, ttk
 
-from app.services import matches_service, groups_service, stadiums_service, teams_service
+from app.controllers import matches_service, groups_service, stadiums_service, teams_service
 
 
 class MatchesView(ttk.Frame):

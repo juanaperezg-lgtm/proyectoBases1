@@ -1,6 +1,6 @@
 from tkinter import StringVar, messagebox, ttk, filedialog
 from datetime import datetime
-from app.services import reports_service, confederations_service, teams_service
+from app.controllers import reports_service, confederations_service, teams_service
 
 
 class ReportsView(ttk.Frame):

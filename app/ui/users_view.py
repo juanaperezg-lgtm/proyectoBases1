@@ -2,7 +2,7 @@ from tkinter import StringVar, messagebox, ttk
 
 from mysql.connector.errors import IntegrityError
 
-from app.services import user_service
+from app.controllers import user_service
 
 
 class UsersView(ttk.Frame):

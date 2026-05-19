@@ -2,7 +2,7 @@ from tkinter import BooleanVar, StringVar, messagebox, ttk
 
 from mysql.connector.errors import IntegrityError
 
-from app.services import countries_service
+from app.controllers import countries_service
 
 
 class CountriesView(ttk.Frame):

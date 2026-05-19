@@ -2,7 +2,7 @@ from tkinter import StringVar, messagebox, ttk
 
 from mysql.connector.errors import IntegrityError
 
-from app.services import stadiums_service, cities_service
+from app.controllers import stadiums_service, cities_service
 
 
 class StadiumsView(ttk.Frame):
